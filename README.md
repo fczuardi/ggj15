@@ -1,3 +1,3 @@
-# ggj15
-# ggj15 foo
-# ggj15
+# Global Game Jam 2015
+
+This is my entry
