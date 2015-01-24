@@ -8,6 +8,31 @@ const SERVER_PORT = 3000;
 
 var app = koa();
 
+// sync with the git version on POST (git hook to auto-update the server)
+app.use(route.post('/update',
+    function *(){
+        console.log('A POST on', this.request.url);
+        var options = {
+                cwd: './'
+            },
+            execPromise = new Promise(function (resolve){
+                exec(
+                    "git pull && npm install",
+                    options, function(error, stdout, stderr){
+                        console.log('stdout:');
+                        console.log(stdout);
+                        console.log('stderr:');
+                        console.log(stderr);
+                        console.log('error:');
+                        console.log(error);
+                        resolve();
+                });
+            });
+        yield execPromise;
+    }
+));
+
+
 // all other paths try to serve the static file
 app.use(serve('dist/www'));
 
