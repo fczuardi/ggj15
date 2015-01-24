@@ -19,16 +19,16 @@ app.use(route.post('/update',
                 exec(
                     "git pull && npm install",
                     options, function(error, stdout, stderr){
-                        console.log('stdout:');
-                        console.log(stdout);
-                        console.log('stderr:');
-                        console.log(stderr);
-                        console.log('error:');
-                        console.log(error);
-                        resolve();
+                        var response = 'stdout:' + stdout +
+                                        "\nstderr:" + stderr +
+                                        "\nerror:" + error;
+
+                        console.log(response);
+                        resolve(response);
                 });
             });
-        yield execPromise;
+        var response = yield execPromise;
+        this.body = response;
     }
 ));
 
