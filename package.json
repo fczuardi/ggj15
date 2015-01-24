@@ -1,0 +1,28 @@
+{
+  "name": "ggj15",
+  "version": "1.0.0-alpha",
+  "description": "A game for the Global Game Jam 2015 (São Carlos - SP, Brasil site)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fczuardi/ggj15.git"
+  },
+  "keywords": [
+    "game",
+    "2d",
+    "ggj15",
+    "gamejam",
+    "javascript",
+    "web"
+  ],
+  "author": "Fabricio Campos Zuardi",
+  "license": "AGPL",
+  "bugs": {
+    "url": "https://github.com/fczuardi/ggj15/issues"
+  },
+  "homepage": "https://github.com/fczuardi/ggj15"
+}
