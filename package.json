@@ -26,9 +26,13 @@
   },
   "homepage": "https://github.com/fczuardi/ggj15",
   "devDependencies": {
+    "browserify": "^8.1.1",
+    "craftyjs": "^0.6.3",
     "gulp": "^3.8.10",
     "koa": "^0.15.0",
     "koa-route": "^2.4.0",
-    "koa-static": "^1.4.8"
+    "koa-static": "^1.4.8",
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.2.1"
   }
 }
