@@ -17,7 +17,7 @@ app.use(route.post('/update',
             },
             execPromise = new Promise(function (resolve){
                 exec(
-                    "git pull && npm install",
+                    "git pull && npm install && ./node_modules/gulp/bin/gulp.js",
                     options, function(error, stdout, stderr){
                         var response = 'stdout:' + stdout +
                                         "\nstderr:" + stderr +
