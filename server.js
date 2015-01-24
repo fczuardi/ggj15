@@ -4,7 +4,7 @@ var koa = require('koa'),
     route = require('koa-route'),
     serve = require('koa-static');
 
-const SERVER_PORT = 3000;
+var conf = require('./constants').server;
 
 var app = koa();
 
@@ -43,6 +43,6 @@ app.use(function *() {
     yield false;
 });
 
-app.listen(SERVER_PORT, function() {
-    console.log('Koa is listening to http://' + 'localhost' + ':'+ SERVER_PORT);
+app.listen(conf.PORT, function() {
+    console.log('Koa is listening to http://' + 'localhost' + ':'+ conf.PORT);
 });

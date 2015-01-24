@@ -1,18 +1,18 @@
-const paths = {
-    TEMPLATES: './src/templates/',
-    SCRIPTS: './src/js/',
-    MAIN_JS_ENTRY: './src/js/main.js',
-    dist: {
-        WWW: './dist/www/',
-        JS: './dist/www/js/',
-        VENDORS_JS_FILENAME: 'vendors.js',
-        MAIN_JS_FILENAME: 'main.js'
-    }
-};
-
-const REQUIRED_LIBS = [
+var REQUIRED_LIBS = [
     'craftyjs'
 ];
+
+var gulp = require('gulp'),
+    browserify = require('browserify'),
+    source = require('vinyl-source-stream'),
+    watchify = require('watchify'),
+    browserSync = require('browser-sync'),
+    reload = browserSync.reload;
+
+var config = require('./constants'),
+    paths = config.paths,
+    server = config.server,
+    dev = config.dev;
 
 function onBundleError(e){
     console.log('BUNDLING ERROR!');
@@ -24,10 +24,6 @@ function bundleAppToDest(bundler){
             .pipe(source(paths.dist.MAIN_JS_FILENAME))
             .pipe(gulp.dest(paths.dist.JS));
 }
-var gulp = require('gulp'),
-    browserify = require('browserify'),
-    source = require('vinyl-source-stream'),
-    watchify = require('watchify');
 
 gulp.task('html', function(){
     return gulp.src(paths.TEMPLATES + '*.html')
@@ -51,7 +47,6 @@ gulp.task('bundle-app-js', function(){
     var bundler = browserify(options).external(REQUIRED_LIBS);
     return bundleAppToDest(bundler);
 });
-
 gulp.task('watch-bundle-app-js', function(){
     var options = {
         entries: [paths.MAIN_JS_ENTRY],
@@ -64,18 +59,36 @@ gulp.task('watch-bundle-app-js', function(){
         this.bundle()
             .on('error', onBundleError)
             .pipe(source(paths.dist.MAIN_JS_FILENAME))
-            .pipe(gulp.dest(paths.dist.JS));
+            .pipe(gulp.dest(paths.dist.JS))
+            .pipe(reload({stream: true}));
         console.log('rebundled.');
     });
     return bundleAppToDest(watcher);
 });
+gulp.task('browsersync', function() {
+    browserSync({
+        proxy: server.HOST + ':' + server.PORT,
+        port: dev.BROWSERSYNC_PORT
+    });
+});
+// Reload all Browsers
+gulp.task('bs-reload', function () {
+    reload();
+});
 
+
+gulp.task('dev',
+    [
+        'watch-bundle-app-js',
+        'browsersync'
+    ]
+);
 
 // Default task, is what the deployed version (ggj15.nulo.com.br) runs
 gulp.task('default',
-        [
-            'html',
-            'bundle-vendors-js',
-            'bundle-app-js'
-        ]
+    [
+        'html',
+        'bundle-vendors-js',
+        'bundle-app-js'
+    ]
 );
