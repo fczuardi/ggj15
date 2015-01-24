@@ -24,5 +24,10 @@
   "bugs": {
     "url": "https://github.com/fczuardi/ggj15/issues"
   },
-  "homepage": "https://github.com/fczuardi/ggj15"
+  "homepage": "https://github.com/fczuardi/ggj15",
+  "devDependencies": {
+    "koa": "^0.15.0",
+    "koa-route": "^2.4.0",
+    "koa-static": "^1.4.8"
+  }
 }
