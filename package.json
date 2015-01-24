@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/fczuardi/ggj15",
   "devDependencies": {
-    "box2d": "^1.0.0",
     "gulp": "^3.8.10",
     "koa": "^0.15.0",
     "koa-route": "^2.4.0",
