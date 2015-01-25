@@ -1,65 +1,40 @@
-var Crafty = require('craftyjs');
+var Phaser = require('phaser');
 
-var c = require('../../constants').game;
+var c = require('../../constants').game
 
-require('./components/floor');
-require('./components/avatar');
-require('./components/playableAvatar');
-require('./components/balloon');
-require('./components/portal');
-require('./components/fps');
+var caveman, woman, man;
 
-Crafty.init(c.WIDTH, c.HEIGHT);
-Crafty.background('#cce');
+// documentation at http://docs.phaser.io/Phaser.Game.html
+var game = new Phaser.Game(
+    c.WIDTH,
+    c.HEIGHT,
+    Phaser.CANVAS,
+    document.body,
+    {
+        preload: function(){
+            game.load.image('background', 'img/panoramica.jpg');
+            game.load.spritesheet('caveman', 'img/spritesheet_caveman.png', 32, 32);
+            game.load.spritesheet('woman', 'img/asianwomanwithbaby_running.png', 110, 167);
+            game.load.spritesheet('man', 'img/minimalObjects_32x32Tiles.png', 32, 32);
+        },
+        create: function(){
+            game.physics.startSystem(Phaser.Physics.ARCADE);
+            game.add.sprite(0, 0, 'background');
+            caveman = game.add.sprite(100,100,'caveman');
+            caveman.animations.add('walk');
+            caveman.animations.play('walk', 30, true);
+            woman = game.add.sprite(300,100,'woman');
+            woman.animations.add('walk');
+            woman.animations.play('walk', 30, true);
 
+            man = game.add.sprite(200,200,'man');
+            man.animations.add('walk', [0,1,2,3,4,5]);
+            man.play('walk', 10, true);
 
-var world = Crafty.e('2D,Canvas'),
-    screenA = Crafty.e('2D, Canvas')
-                .attr({
-                    x:0,
-                    y:c.HEIGHT/2,
-                    w:c.WIDTH,
-                    h:c.HEIGHT/2
-                })
-                .origin('center'),
-    screenB = Crafty.e('2D, Canvas')
-                .attr({
-                    x:0,
-                    y:0,
-                    w:c.WIDTH,
-                    h:c.HEIGHT/2
-                })
-                .origin('center'),
-    floorA = Crafty.e('Floor')
-                .attr({
-                    y: c.HEIGHT - c.FLOOR_HEIGHT
-                }),
-    avatarA = Crafty.e('PlayableAvatar')
-                .attr({
-                    x: 0,
-                    y: floorA.y - c.PLAYER_HEIGHT
-                }),
-    floorB = Crafty.e('Floor')
-                .attr({
-                    y: c.HEIGHT/2 - c.FLOOR_HEIGHT
-                }),
-    avatarB = Crafty.e('Avatar')
-                .attr({
-                    x: 0,
-                    y: floorB.y - c.PLAYER_HEIGHT
-                }),
-    portal = Crafty.e('Portal'),
-    balloon = Crafty.e('Balloon')
-                .attr({
-                    x: 100,
-                    y: floorA.y - c.BALLOON_HEIGHT
-                })
-                .color('yellow');
-
-avatarA.color('red');
-avatarB.color('darkgray');
-screenA.attach(floorA, avatarA, balloon);
-screenB.attach(floorB, avatarB).attr({rotation:180});
-world.attach(screenA, screenB).attr({rotation:0});
-
-Crafty.e('FPSCounter, Fps');
+            caveman.anchor.setTo(0.5, 0.5);
+            caveman.scale.x *= -1;
+        },
+        update: function(){
+        }
+    }
+);

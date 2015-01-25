@@ -28,10 +28,10 @@
   "devDependencies": {
     "browser-sync": "^1.9.1",
     "browserify": "^8.1.1",
-    "craftyjs": "git://github.com/fczuardi/Crafty#stopFallingCeiling",
     "gulp": "^3.8.10",
     "koa": "^0.15.0",
     "koa-route": "^2.4.0",
+    "koa-send": "^1.3.1",
     "koa-static": "^1.4.8",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^2.2.1"

@@ -1,5 +1,5 @@
 var REQUIRED_LIBS = [
-    'craftyjs'
+    'phaser'
 ];
 
 var gulp = require('gulp'),
@@ -20,7 +20,7 @@ function onBundleError(e){
 }
 function bundleAppToDest(bundler){
     return bundler.bundle()
-            .on('error', onBundleError)
+            // .on('error', onBundleError)
             .pipe(source(paths.dist.MAIN_JS_FILENAME))
             .pipe(gulp.dest(paths.dist.JS));
 }
@@ -33,7 +33,7 @@ gulp.task('bundle-vendors-js', function(){
     return browserify()
             .require(REQUIRED_LIBS)
             .bundle()
-            .on('error', onBundleError)
+            // .on('error', onBundleError)
             .pipe(source(paths.dist.VENDORS_JS_FILENAME))
             .pipe(gulp.dest(paths.dist.JS));
 });

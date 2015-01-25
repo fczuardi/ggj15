@@ -2,7 +2,8 @@ var exec = require('child_process').exec;
 
 var koa = require('koa'),
     route = require('koa-route'),
-    serve = require('koa-static');
+    serve = require('koa-static'),
+    send = require('koa-send');
 
 var conf = require('./constants').server;
 
@@ -32,7 +33,10 @@ app.use(route.post('/update',
     }
 ));
 
-
+app.use(route.get('/img/:filename', function *(filename){
+    console.log(filename, typeof filename);
+     yield send(this, filename, {root:'assets'});
+}));
 // all other paths try to serve the static file
 app.use(serve('dist/www'));
 
