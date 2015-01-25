@@ -15,7 +15,11 @@ var caveman,
     topTransitioning = false,
     topScreenNextStop = c.WIDTH,
     bottomTransitioning = false,
-    bottomScreenNextStop = - c.WIDTH;
+    bottomScreenNextStop = - c.WIDTH,
+    bottomButtonDown = false,
+    topButtonDown = false,
+    cursors,
+    wasd;
 
 // documentation at http://docs.phaser.io/Phaser.Game.html
 var game = new Phaser.Game(
@@ -87,16 +91,57 @@ var game = new Phaser.Game(
             bottomGroup.add(caveman);
             bottomGroup.x = 0;
 
+            //interactivity
+            game.input.onDown.add(function(){
+                if ((this.input.position.y > c.HEIGHT/2)){
+                    bottomButtonDown = true;
+                } else {
+                    topButtonDown = true;
+                }
+            }, this);
+            game.input.onUp.add(function(){
+                console.log('up');
+                if ((this.input.position.y > c.HEIGHT/2)){
+                    bottomButtonDown = false;
+                } else {
+                    topButtonDown = false;
+                }
+            }, this);
+
+            //  This will create a new object called "cursors", inside it will contain 4 objects: up, down, left and right.
+            //  These are all Phaser.Key objects, so anything you can do with a Key object you can do with these.
+            cursors = game.input.keyboard.createCursorKeys();
+            wasd = {
+                up: game.input.keyboard.addKey(Phaser.Keyboard.W),
+                down: game.input.keyboard.addKey(Phaser.Keyboard.S),
+                left: game.input.keyboard.addKey(Phaser.Keyboard.A),
+                right: game.input.keyboard.addKey(Phaser.Keyboard.D),
+            };
+
+
 
         },
         update: function(){
-            var v = 2;
-
+            var v = 2,
+                bottomPlayerButtonPressed = (
+                                        cursors.right.isDown ||
+                                        cursors.left.isDown ||
+                                        bottomButtonDown),
+                topPlayerButtonPressed = (
+                                        wasd.right.isDown ||
+                                        wasd.left.isDown ||
+                                        topButtonDown);
 
             //pagination
             if ( bottomTransitioning === false){
                 if (caveman.x < c.WIDTH - 15 + (bottomGroup.x * -1)){
-                    caveman.x += v;
+                    if (bottomPlayerButtonPressed){
+                        console.log((game.input.pointer1.isDown));
+                        caveman.animations.play('walk');
+                        caveman.x += v;
+                    }else{
+                        caveman.animations.stop('walk');
+                    }
                 } else {
                     bottomTransitioning = true;
                 }
@@ -106,14 +151,19 @@ var game = new Phaser.Game(
                     bottomGroup.x -= v*5;
                 } else{
                     bottomTransitioning = false;
-                    caveman.animations.play('walk');
                     bottomGroup.x = bottomScreenNextStop;
                     bottomScreenNextStop -= c.WIDTH;
                 }
             }
+
             if ( topTransitioning === false){
                 if (caveman2.x > 15 + (topGroup.x * -1)){
-                    caveman2.x -= v;
+                    if (topPlayerButtonPressed){
+                        caveman2.animations.play('walk');
+                        caveman2.x -= v;
+                    }else{
+                        caveman2.animations.stop('walk');
+                    }
                 } else {
                     topTransitioning = true;
                 }
