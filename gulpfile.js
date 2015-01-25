@@ -1,5 +1,4 @@
 var REQUIRED_LIBS = [
-    'craftyjs'
 ];
 
 var gulp = require('gulp'),
