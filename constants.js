@@ -26,7 +26,9 @@ var Constants = {
         PLAYER_WIDTH: 30,
         PLAYER_HEIGHT: 30,
         FLOOR_HEIGHT: 50,
-        FLOOR_WIDTH: w
+        FLOOR_WIDTH: w,
+        PORTAL_WIDTH: w,
+        PORTAL_HEIGHT: 50
     }
 };
 

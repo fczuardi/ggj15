@@ -1,25 +1,23 @@
 var Crafty = require('craftyjs');
 
+require('./components/avatar');
+require('./components/floor');
+require('./components/portal');
+
 var c = require('../../constants').game;
 
 Crafty.init(c.WIDTH, c.HEIGHT);
 Crafty.background('#cce');
 
-Crafty.e('FloorA, 2D, Canvas, Color')
+Crafty.e('FloorA, Floor')
     .attr({
-        x: 0,
-        y: c.HEIGHT - c.FLOOR_HEIGHT,
-        w: c.FLOOR_WIDTH,
-        h: c.FLOOR_HEIGHT
-    })
-    .color('orange');
+        y: c.HEIGHT - c.FLOOR_HEIGHT
+    });
 
-Crafty.e('PlayerA, 2D, Canvas, Color, Gravity')
+Crafty.e('PlayerA, Avatar')
     .attr({
         x: 0,
-        y: c.HEIGHT / 2,
-        w: c.PLAYER_WIDTH,
-        h: c.PLAYER_HEIGHT
+        y: c.HEIGHT / 2
     })
     .color('red')
     .gravityConst(c.GRAVITY)
@@ -27,22 +25,20 @@ Crafty.e('PlayerA, 2D, Canvas, Color, Gravity')
 
 //-----
 
-Crafty.e('FloorB, 2D, Canvas, Color')
+Crafty.e('FloorB, Floor')
     .attr({
-        x: 0,
-        y: 0,
-        w: c.FLOOR_WIDTH,
-        h: c.FLOOR_HEIGHT
-    })
-    .color('orange');
+        y: 0
+    });
 
-Crafty.e('PlayerB, 2D, Canvas, Color, Gravity')
+Crafty.e('PlayerB, Avatar')
     .attr({
         x: 0,
-        y: c.HEIGHT / 2 - c.PLAYER_HEIGHT,
-        w: c.PLAYER_WIDTH,
-        h: c.PLAYER_HEIGHT
+        y: c.HEIGHT / 2 - c.PLAYER_HEIGHT
     })
     .color('darkgray')
     .gravityConst(c.GRAVITY * -1)
     .gravity('FloorB');
+
+//----- Portal -------
+
+Crafty.e('MainPortal, Portal');
