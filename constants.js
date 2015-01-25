@@ -22,6 +22,8 @@ var Constants = {
     game: {
         WIDTH: w,
         HEIGHT: h,
+        BG_WIDTH: 3289,
+        BG_HEIGHT: 512,
         FLOOR_WIDTH: w,
         PORTAL_WIDTH: w,
         GRAVITY: 0.4,
