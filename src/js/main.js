@@ -9,7 +9,13 @@ var caveman,
     floorTop,
     floorBottom,
     flagTop,
-    flagBottom;
+    flagBottom,
+    topGroup,
+    bottomGroup,
+    topTransitioning = false,
+    topScreenNextStop = c.WIDTH,
+    bottomTransitioning = false,
+    bottomScreenNextStop = - c.WIDTH;
 
 // documentation at http://docs.phaser.io/Phaser.Game.html
 var game = new Phaser.Game(
@@ -61,29 +67,66 @@ var game = new Phaser.Game(
             caveman = game.add.sprite(30,c.HEIGHT - 70 - 17,'caveman');
             caveman2 = game.add.sprite(c.WIDTH - 30, 70 + 17,'caveman');
             caveman.animations.add('walk');
-            caveman2.animations.add('walk2');
+            caveman2.animations.add('walk');
             caveman.animations.play('walk', 30, true);
-            caveman2.animations.play('walk2', 30, true);
+            caveman2.animations.play('walk', 30, true);
 
             caveman.anchor.setTo(0.5, 0.5);
             caveman.scale.x *= -1;
             caveman2.anchor.setTo(0.5, 0.5);
             caveman2.scale.y *= -1;
 
+            //groups (top x bottom)
+            topGroup = game.add.group();
+            topGroup.add(floorTop);
+            topGroup.add(flagTop);
+            topGroup.add(caveman2);
+            bottomGroup = game.add.group();
+            bottomGroup.add(floorBottom);
+            bottomGroup.add(flagBottom);
+            bottomGroup.add(caveman);
+            bottomGroup.x = 0;
+
+
         },
         update: function(){
             var v = 2;
-            if (floorBottom.x > c.WIDTH/2 - c.BG_WIDTH/2){
-                floorTop.x += v;
-                floorBottom.x -= v;
-                flagTop.x += v;
-                flagBottom.x -= v;
-            } else if ((caveman.x < c.WIDTH/2) && (caveman2.x > c.WIDTH/2)){
-                caveman.x += v;
-                caveman2.x -= v;
-            } else{
-                caveman.animations.stop();
-                caveman2.animations.stop();
+
+
+            //pagination
+            if ( bottomTransitioning === false){
+                if (caveman.x < c.WIDTH - 15 + (bottomGroup.x * -1)){
+                    caveman.x += v;
+                } else {
+                    bottomTransitioning = true;
+                }
+            }else{
+                if  (( bottomTransitioning === true) && (bottomGroup.x > bottomScreenNextStop )){
+                    caveman.animations.stop();
+                    bottomGroup.x -= v*5;
+                } else{
+                    bottomTransitioning = false;
+                    caveman.animations.play('walk');
+                    bottomGroup.x = bottomScreenNextStop;
+                    bottomScreenNextStop -= c.WIDTH;
+                }
+            }
+            if ( topTransitioning === false){
+                if (caveman2.x > 15 + (topGroup.x * -1)){
+                    caveman2.x -= v;
+                } else {
+                    topTransitioning = true;
+                }
+            }else{
+                if  (( topTransitioning === true) && (topGroup.x < topScreenNextStop )){
+                    caveman2.animations.stop();
+                    topGroup.x += v*5;
+                } else{
+                    topTransitioning = false;
+                    caveman2.animations.play('walk');
+                    topGroup.x = topScreenNextStop;
+                    topScreenNextStop += c.WIDTH;
+                }
             }
         },
         render: function() {
