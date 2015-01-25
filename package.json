@@ -27,7 +27,7 @@
   "homepage": "https://github.com/fczuardi/ggj15",
   "devDependencies": {
     "browserify": "^8.1.1",
-    "craftyjs": "^0.6.3",
+    "craftyjs": "git://github.com/fczuardi/Crafty#stopFallingCeiling",
     "gulp": "^3.8.10",
     "koa": "^0.15.0",
     "koa-route": "^2.4.0",
