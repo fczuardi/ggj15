@@ -25,7 +25,7 @@ var Constants = {
         FLOOR_WIDTH: w,
         PORTAL_WIDTH: w,
         GRAVITY: 0.4,
-        BALLOON_GRAVITY: - 0.1,
+        BALLOON_GRAVITY: - 0.05,
         FLOOR_HEIGHT: 50,
         PORTAL_HEIGHT: 50,
         PLAYER_WIDTH: 30,
