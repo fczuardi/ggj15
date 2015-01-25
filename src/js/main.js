@@ -1,1 +1,3 @@
-console.log('a new beggining 2');
+var Phaser = require('phaser');
+
+console.log(Phaser);
