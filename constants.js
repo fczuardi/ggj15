@@ -1,5 +1,5 @@
 var w = 768,
-    h = 1024;
+    h = 960;
 var Constants = {
     paths: {
         TEMPLATES: './src/templates/',
@@ -22,18 +22,14 @@ var Constants = {
     game: {
         WIDTH: w,
         HEIGHT: h,
-        BG_WIDTH: 3289,
-        BG_HEIGHT: 512,
+        BG_WIDTH: 4000,
+        BG_HEIGHT: 480,
         FLOOR_WIDTH: w,
         PORTAL_WIDTH: w,
         GRAVITY: 0.4,
         BALLOON_GRAVITY: - 0.05,
         FLOOR_HEIGHT: 50,
-        PORTAL_HEIGHT: 50,
-        PLAYER_WIDTH: 30,
-        PLAYER_HEIGHT: 30,
-        BALLOON_WIDTH: 20,
-        BALLOON_HEIGHT: 50
+        PORTAL_HEIGHT: 50
     }
 };
 
