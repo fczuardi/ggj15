@@ -1,3 +1,5 @@
+var w = 768,
+    h = 1024;
 var Constants = {
     paths: {
         TEMPLATES: './src/templates/',
@@ -16,6 +18,15 @@ var Constants = {
     },
     dev: {
         BROWSERSYNC_PORT: 3000
+    },
+    game: {
+        WIDTH: w,
+        HEIGHT: h,
+        GRAVITY: 0.4,
+        PLAYER_WIDTH: 30,
+        PLAYER_HEIGHT: 30,
+        FLOOR_HEIGHT: 50,
+        FLOOR_WIDTH: w
     }
 };
 
