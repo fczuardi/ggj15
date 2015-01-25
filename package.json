@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/fczuardi/ggj15",
   "devDependencies": {
+    "browser-sync": "^1.9.1",
     "browserify": "^8.1.1",
     "craftyjs": "git://github.com/fczuardi/Crafty#stopFallingCeiling",
     "gulp": "^3.8.10",
