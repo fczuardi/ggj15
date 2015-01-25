@@ -1,5 +1,5 @@
 var REQUIRED_LIBS = [
-    'pixi'
+    
 ];
 
 var gulp = require('gulp'),
