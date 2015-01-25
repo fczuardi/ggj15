@@ -33,6 +33,7 @@
     "koa-route": "^2.4.0",
     "koa-send": "^1.3.1",
     "koa-static": "^1.4.8",
+    "phaser": "git://github.com/notnullgames/phaser",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^2.2.1"
   }
