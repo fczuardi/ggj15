@@ -1,6 +1,7 @@
 var Crafty = require('craftyjs');
 
 require('./components/avatar');
+require('./components/playableAvatar');
 require('./components/floor');
 require('./components/portal');
 
@@ -14,7 +15,7 @@ Crafty.e('FloorA, Floor')
         y: c.HEIGHT - c.FLOOR_HEIGHT
     });
 
-Crafty.e('PlayerA, Avatar')
+Crafty.e('PlayerA, PlayableAvatar')
     .attr({
         x: 0,
         y: c.HEIGHT / 2
