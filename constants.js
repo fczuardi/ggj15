@@ -22,13 +22,16 @@ var Constants = {
     game: {
         WIDTH: w,
         HEIGHT: h,
-        GRAVITY: 0.4,
-        PLAYER_WIDTH: 30,
-        PLAYER_HEIGHT: 30,
-        FLOOR_HEIGHT: 50,
         FLOOR_WIDTH: w,
         PORTAL_WIDTH: w,
-        PORTAL_HEIGHT: 50
+        GRAVITY: 0.4,
+        BALLOON_GRAVITY: - 0.1,
+        FLOOR_HEIGHT: 50,
+        PORTAL_HEIGHT: 50,
+        PLAYER_WIDTH: 30,
+        PLAYER_HEIGHT: 30,
+        BALLOON_WIDTH: 20,
+        BALLOON_HEIGHT: 50
     }
 };
 

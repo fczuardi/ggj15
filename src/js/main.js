@@ -1,8 +1,9 @@
 var Crafty = require('craftyjs');
 
+require('./components/floor');
 require('./components/avatar');
 require('./components/playableAvatar');
-require('./components/floor');
+require('./components/balloon');
 require('./components/portal');
 
 var c = require('../../constants').game;
@@ -23,6 +24,14 @@ Crafty.e('PlayerA, PlayableAvatar')
     .color('red')
     .gravityConst(c.GRAVITY)
     .gravity('FloorA');
+
+Crafty.e('BalloonA, Balloon')
+    .attr({
+        x: 100,
+        y: c.HEIGHT / 2
+    })
+    .color('yellow')
+    .gravityConst(c.BALLOON_GRAVITY)
 
 //-----
 
