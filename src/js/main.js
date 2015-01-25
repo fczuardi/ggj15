@@ -5,6 +5,7 @@ require('./components/avatar');
 require('./components/playableAvatar');
 require('./components/balloon');
 require('./components/portal');
+require('./components/fps');
 
 var c = require('../../constants').game;
 
@@ -32,6 +33,7 @@ Crafty.e('BalloonA, Balloon')
     })
     .color('yellow')
     .gravityConst(c.BALLOON_GRAVITY)
+    .gravity('FloorA');
 
 //-----
 
@@ -52,3 +54,5 @@ Crafty.e('PlayerB, Avatar')
 //----- Portal -------
 
 Crafty.e('MainPortal, Portal');
+
+Crafty.e('FPSCounter, Fps');
