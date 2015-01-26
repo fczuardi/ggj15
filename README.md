@@ -63,7 +63,7 @@ And if you are not a developer or just want to leave feedback you can use [repor
         - license: [Creative Commons Attribution 3.0][ccby]
 - Background
     - [Easy to Tile Sky Backgrounds][tilingbackground]
-        - by [Hawkadium][http://hawkadium.blogspot.ca/]
+        - by [Hawkadium][hawkadium]
         - license: [Creative Commons Attribution 3.0][ccby]
 
 ## Licenses
@@ -105,7 +105,7 @@ My technology "stack" for this project was:
 |------------------------|----------------------------------------------|
 |Programming Language    |Javascript - [io.js][iojs] (a nodejs fork)    |
 |"node" version manager  |[nvm][nvm]                                    |
-|Webserver / API backend ||[koa][koa]                                   |
+|Webserver / API backend |[koa][koa]                                    |
 |Game-engine             |[Phaser js][phaserjs]                         |
 |Build system            |[gulp][gulp]                                  |
 |JS Modules Bundler      |[browserify][browserify]                      |
@@ -118,34 +118,35 @@ My technology "stack" for this project was:
 
 
 
-[kenney]: http://kenney.nl/
-[tilingbackground]: http://opengameart.org/content/easy-to-tile-sky-backgrounds
-[ccby]: http://creativecommons.org/licenses/by/3.0/
-[cavemanspritesheet]: http://opengameart.org/content/running-caveman-spritesheet
-[danielsiegmund]: http://danielsiegmund.nl/
-[cc0]: http://creativecommons.org/publicdomain/zero/1.0/
-[platformart]: http://opengameart.org/content/platformer-art-complete-pack-often-updated
 [agpl]: http://www.gnu.org/licenses/agpl-3.0.html
 [browserify]: http://browserify.org/
 [browsersync]: http://www.browsersync.io/
+[cavemanspritesheet]: http://opengameart.org/content/running-caveman-spritesheet
+[cc0]: http://creativecommons.org/publicdomain/zero/1.0/
+[ccby]: http://creativecommons.org/licenses/by/3.0/
 [ccbyncsa]: http://creativecommons.org/licenses/by-nc-sa/3.0/
+[danielsiegmund]: http://danielsiegmund.nl/
 [email]: mailto:fabricio@fabricio.org
 [fxaurora]: https://www.mozilla.org/en-US/firefox/developer/
-[ggj]: http://globalgamejam.org/
 [ggj15rules]: http://globalgamejam.org/legal-policies
+[ggj]: http://globalgamejam.org/
 [ggjentry]: http://globalgamejam.org/2015/games/heavy-balloons
 [git]: http://git-scm.com/
 [gitcola]: http://git-cola.github.io
 [gitrepo]: https://github.com/fczuardi/ggj15
 [gulp]: http://gulpjs.com/
+[hawkadium]: http://hawkadium.blogspot.ca/
 [iojs]: http://iojs.org
+[kenney]: http://kenney.nl/
 [koa]: http://koajs.com/
 [node]: http://nodejs.org
 [nvm]: https://github.com/creationix/nvm
 [phaserjs]: http://phaser.io
+[platformart]: http://opengameart.org/content/platformer-art-complete-pack-often-updated
 [playurl]: http://ggj15.nulo.com.br
 [pullrequest]: https://help.github.com/articles/using-pull-requests/
 [reportissue]: https://github.com/fczuardi/ggj15/issues
 [screenshot]: http://globalgamejam.org/sites/default/files/styles/game_content__wide/public/games/screenshots/2015-01-25-232146_1920x1200_scrot.png?itok=svDdE21m
+[tilingbackground]: http://opengameart.org/content/easy-to-tile-sky-backgrounds
 [watchify]: http://truongtx.me/2014/08/06/using-watchify-with-gulp-for-fast-browserify-build/
 [zed]: http://zedapp.org
