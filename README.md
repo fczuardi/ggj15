@@ -74,7 +74,8 @@ The code of this game is licensed to you under the
 [AGPL LICENSE verion 3][agpl], which means that you can copy, modify and
 republish it freely, for any purpose (including commercial uses) as long as you
 provide a link to your modified version of the code. Please read the full
-license for details.
+license for details, it's available at a file named __COPYING__ at the root
+folder of this project.
 
 Since the game was an entry for the Global Game Jam competition, there is a
 [zip file with an older version][ggjentry] of this code (the snapshot of the
