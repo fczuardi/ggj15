@@ -159,10 +159,18 @@ var game = new Phaser.Game(
             }, this);
 
             //colision ballons-other-screen
-            game.physics.arcade.collide(bottomBalloonGroup, caveman2, null, function(bg, balloon){
-                console.log('collideee');
+            game.physics.arcade.collide(bottomBalloonGroup, caveman2, null, function(avatar, balloon){
+                avatar.kill();
             }, this);
 
+            // balloon transformation
+            bottomBalloonGroup.forEach(function(balloon){
+                if ((balloon.frame < 2) && (balloon.y < c.HEIGHT/2)){
+                    balloon.animations.stop();
+                    balloon.frame = Math.round(2 + Math.random());
+                    balloon.body.velocity.setTo(0,balloon.body.velocity.y * 4);
+                }
+            });
             //pagination
             if ( bottomTransitioning === false){
                 if (caveman.x < c.WIDTH - 15 + (bottomGroup.x * -1)){
