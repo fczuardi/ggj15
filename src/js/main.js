@@ -19,8 +19,10 @@ var caveman,
     bottomButtonDown = false,
     topButtonDown = false,
     cursors,
-    wasd;
+    wasd,
+    bottomBalloonGroup;
 
+function init(){
 // documentation at http://docs.phaser.io/Phaser.Game.html
 var game = new Phaser.Game(
     c.WIDTH,
@@ -32,6 +34,7 @@ var game = new Phaser.Game(
             game.load.image('background', 'img/BGSkyBlue.png');
             game.load.spritesheet('caveman', 'img/spritesheet_caveman.png', 32, 32);
             game.load.spritesheet('tiles', 'img/tiles_spritesheet.png', 72, 72);
+            game.load.spritesheet('balloon', 'img/balloon.png', 70, 70);
             game.load.spritesheet('flag', 'img/flagRed2Frame.png', 70, 70);
             game.load.spritesheet('grass', 'img/grassMid.png');
         },
@@ -80,16 +83,21 @@ var game = new Phaser.Game(
             caveman2.anchor.setTo(0.5, 0.5);
             caveman2.scale.y *= -1;
 
-            //groups (top x bottom)
-            topGroup = game.add.group();
-            topGroup.add(floorTop);
-            topGroup.add(flagTop);
-            topGroup.add(caveman2);
-            bottomGroup = game.add.group();
-            bottomGroup.add(floorBottom);
-            bottomGroup.add(flagBottom);
-            bottomGroup.add(caveman);
-            bottomGroup.x = 0;
+
+            //balloons
+            var bottomBalloonPositions = [];
+            for (var i = 0; i < 3 ; i++){
+                bottomBalloonPositions.push(50 + Math.random()*(c.WIDTH-50))
+            }
+            bottomBalloonGroup = game.add.group();
+            for (i = 0; i < bottomBalloonPositions.length; i++){
+                var b = game.add.sprite(bottomBalloonPositions[i],800,'balloon');
+                    b.animations.add('balloon', [0,1]);
+                bottomBalloonGroup.add(b);
+            }
+            game.physics.enable(caveman, Phaser.Physics.ARCADE);
+            game.physics.enable(caveman2, Phaser.Physics.ARCADE);
+            game.physics.enable(bottomBalloonGroup, Phaser.Physics.ARCADE);
 
             //interactivity
             game.input.onDown.add(function(){
@@ -100,7 +108,6 @@ var game = new Phaser.Game(
                 }
             }, this);
             game.input.onUp.add(function(){
-                console.log('up');
                 if ((this.input.position.y > c.HEIGHT/2)){
                     bottomButtonDown = false;
                 } else {
@@ -119,6 +126,19 @@ var game = new Phaser.Game(
             };
 
 
+            //groups (top x bottom)
+            topGroup = game.add.group();
+            topGroup.add(floorTop);
+            topGroup.add(flagTop);
+            topGroup.add(caveman2);
+            bottomGroup = game.add.group();
+            bottomGroup.add(floorBottom);
+            bottomGroup.add(flagBottom);
+            bottomGroup.add(caveman);
+            bottomGroup.x = 0;
+
+
+
 
         },
         update: function(){
@@ -132,11 +152,21 @@ var game = new Phaser.Game(
                                         wasd.left.isDown ||
                                         topButtonDown);
 
+            //colision player-ballons
+            game.physics.arcade.collide(bottomBalloonGroup, caveman, null, function(avatar, balloon){
+                balloon.animations.play('balloon', 3, true);
+                balloon.body.velocity.setTo(0,-90 -60 * Math.random());
+            }, this);
+
+            //colision ballons-other-screen
+            game.physics.arcade.collide(bottomBalloonGroup, caveman2, null, function(bg, balloon){
+                console.log('collideee');
+            }, this);
+
             //pagination
             if ( bottomTransitioning === false){
                 if (caveman.x < c.WIDTH - 15 + (bottomGroup.x * -1)){
                     if (bottomPlayerButtonPressed){
-                        console.log((game.input.pointer1.isDown));
                         caveman.animations.play('walk');
                         caveman.x += v;
                     }else{
@@ -184,3 +214,7 @@ var game = new Phaser.Game(
         }
     }
 );
+}
+window.onload = function(){
+   init();
+}
