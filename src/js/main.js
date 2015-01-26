@@ -22,6 +22,19 @@ var caveman,
     wasd,
     bottomBalloonGroup;
 
+function setBalloons(game){
+    //balloons
+    var bottomBalloonPositions = [];
+    for (var i = 0; i < 3 ; i++){
+        bottomBalloonPositions.push(50 + Math.random()*(c.WIDTH-50))
+    }
+    for (i = 0; i < bottomBalloonPositions.length; i++){
+        var b = game.add.sprite(bottomBalloonPositions[i],800,'balloon');
+            b.animations.add('balloon', [0,1]);
+        bottomBalloonGroup.add(b);
+    }
+    game.physics.enable(bottomBalloonGroup, Phaser.Physics.ARCADE);
+}
 function init(){
 // documentation at http://docs.phaser.io/Phaser.Game.html
 var game = new Phaser.Game(
@@ -84,20 +97,10 @@ var game = new Phaser.Game(
             caveman2.scale.y *= -1;
 
 
-            //balloons
-            var bottomBalloonPositions = [];
-            for (var i = 0; i < 3 ; i++){
-                bottomBalloonPositions.push(50 + Math.random()*(c.WIDTH-50))
-            }
             bottomBalloonGroup = game.add.group();
-            for (i = 0; i < bottomBalloonPositions.length; i++){
-                var b = game.add.sprite(bottomBalloonPositions[i],800,'balloon');
-                    b.animations.add('balloon', [0,1]);
-                bottomBalloonGroup.add(b);
-            }
             game.physics.enable(caveman, Phaser.Physics.ARCADE);
             game.physics.enable(caveman2, Phaser.Physics.ARCADE);
-            game.physics.enable(bottomBalloonGroup, Phaser.Physics.ARCADE);
+            setBalloons(game);
 
             //interactivity
             game.input.onDown.add(function(){
@@ -191,6 +194,7 @@ var game = new Phaser.Game(
                     bottomTransitioning = false;
                     bottomGroup.x = bottomScreenNextStop;
                     bottomScreenNextStop -= c.WIDTH;
+                    setBalloons(game);
                 }
             }
 
