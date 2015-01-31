@@ -7,7 +7,7 @@ var gulp = require('gulp'),
     source = require('vinyl-source-stream'),
     watchify = require('watchify'),
     browserSync = require('browser-sync'),
-    reload = browserSync.reload;
+    reload = browserSync.reload;html5.js
 
 var config = require('./constants'),
     paths = config.paths,
